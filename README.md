@@ -1,5 +1,5 @@
 # JianShuPopViewDemo
-简书、淘宝弹出效果动画demo
+尝试封装简书、淘宝弹出效果动画
 
 ![](https://github.com/LinBling/JianShuPopViewDemo/blob/master/2016-02-03%2016_20_30.gif)
 
