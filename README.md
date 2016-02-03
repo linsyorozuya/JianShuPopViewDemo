@@ -1,7 +1,7 @@
 # JianShuPopViewDemo
 简书、淘宝弹出效果动画demo
 
-
+![](https://github.com/LinBling/JianShuPopViewDemo/blob/master/2016-02-03%2016_20_30.gif)
 
 ###使用方法
 
