@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LHCustomModalTransition : UIPercentDrivenInteractiveTransition<UIViewControllerAnimatedTransitioning,UIViewControllerTransitioningDelegate,UIGestureRecognizerDelegate>
+@interface LHCustomModalTransition : NSObject<UIViewControllerAnimatedTransitioning,UIViewControllerInteractiveTransitioning,UIViewControllerTransitioningDelegate,UIGestureRecognizerDelegate>
 
 //---设置是否可拖拽（默认：不可拖动）
 @property (nonatomic, assign, getter=isDragable) BOOL dragable;
