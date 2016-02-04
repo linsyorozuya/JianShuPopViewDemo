@@ -42,6 +42,7 @@
     return self;
 }
 
+//---设置是否添加手势
 - (void)setDragable:(BOOL)dragable
 {
     _dragable = dragable;
@@ -51,155 +52,6 @@
         self.dragGesture.delegate = self;
         [self.modalVC.view addGestureRecognizer:self.dragGesture];
     }
-}
-
-#pragma mark -处理手势驱动
-- (void)handlePanGesture:(UIPanGestureRecognizer *)gesture
-{
-    CGPoint translation = [gesture translationInView:self.modalVC.view];
-    //---向上拖动不处理
-    if(translation.y < 0)
-    {
-        return;
-    }
-    
-    //---根据手势状态操作
-    switch (gesture.state) {
-        case UIGestureRecognizerStateBegan:{
-            self.isInteractive =  YES;
-            [self.modalVC dismissViewControllerAnimated:YES completion:nil];
-            break;
-        }
-        case UIGestureRecognizerStateChanged:{
-            //---滑动距离/屏幕高度 = 进度
-            CGFloat percent = (translation.y/ScreenHeight) <= 1 ? (translation.y/ScreenHeight):1;
-            self.isDragEnough = (percent > 0.2);
-            //---更新
-            [self updateInteractiveTransition:percent];
-            
-            break;
-        }
-        case UIGestureRecognizerStateCancelled:
-        case UIGestureRecognizerStateEnded:{
-            //---拖动结束，判断是执行还是取消
-            self.isInteractive = NO;
-            if (gesture.state == UIGestureRecognizerStateCancelled || !self.isDragEnough) {
-                [self cancelInteractiveTransition];
-            }else{
-                [self finishInteractiveTransition];
-            }
-            break;
-        }
-            
-        default:
-            break;
-    }
-}
-
-#pragma mark -设置是否手势驱动转场动画
-- (id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator
-{
-    return nil;
-}
-
-- (id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator
-{
-    if (self.isInteractive && self.dragable) {
-        self.isDismiss = YES;
-        return self;
-    }
-    return nil;
-}
-
-#pragma mark -覆写手势驱动过程
-//---开始
-- (void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext
-{
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
-    //---保存当前缩小的状态
-    self.tempTransform = toVC.view.layer.transform;
-    //---保存transitionContext，下面使用
-    self.transitionContext = transitionContext;
-}
-
-//---更新
-- (void)updateInteractiveTransition:(CGFloat)percentComplete
-{
-    id<UIViewControllerContextTransitioning> transitionContext = self.transitionContext;
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
-    //---计算放大倍数，然后进行缩放
-    CGFloat scale = 1 + ((1/0.8*0.95) - 1)*percentComplete;
-    toVC.view.layer.transform = CATransform3DScale(self.tempTransform, scale, scale, 1);
-    
-    //---下拉的长度
-    CGRect nowFrame = CGRectMake(0,
-                                 (CGRectGetHeight(fromVC.view.bounds) * percentComplete),
-                                 CGRectGetWidth(fromVC.view.frame),
-                                 CGRectGetHeight(fromVC.view.frame));
-    fromVC.view.frame = nowFrame;
-}
-
-//---完成
-- (void)finishInteractiveTransition
-{
-    id<UIViewControllerContextTransitioning> transitionContext = self.transitionContext;
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
-    //---收起弹出的试图控制器
-    CGRect finalRect = CGRectMake(0,
-                                  CGRectGetHeight(fromVC.view.bounds) ,
-                                  CGRectGetWidth(fromVC.view.frame),
-                                  CGRectGetHeight(fromVC.view.frame));
-    
-    //---动画
-    [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                          delay:0
-         usingSpringWithDamping:5
-          initialSpringVelocity:5
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                         //---放大到原始大小
-                         CATransform3D transition = CATransform3DIdentity;
-                         toVC.view.layer.transform = transition;
-                         //---向下移动隐藏
-                         fromVC.view.frame = finalRect;
-
-    } completion:^(BOOL finished) {
-       //---标记结束
-        [transitionContext completeTransition:YES];
-        self.modalVC = nil;
-    }];
-}
-
-//---取消
-- (void)cancelInteractiveTransition
-{
-    id<UIViewControllerContextTransitioning> transitionContext = self.transitionContext;
-    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
-    [UIView animateWithDuration:0.4
-                          delay:0
-         usingSpringWithDamping:5
-          initialSpringVelocity:5
-                        options:UIViewAnimationOptionCurveEaseOut
-                     animations:^{
-                         //---缩小到大小
-                         toVC.view.layer.transform = self.tempTransform;
-                         //---向上移动，恢复到弹出的状态
-                         fromVC.view.frame = CGRectMake(0,0,
-                                                        CGRectGetWidth(fromVC.view.frame),
-                                                        CGRectGetHeight(fromVC.view.frame));
-                         
-     } completion:^(BOOL finished) {
-         //---标记未结束
-         [transitionContext completeTransition:NO];
-     }];
 }
 
 #pragma mark -转场委托实现
@@ -295,18 +147,170 @@
     }
 }
 
-//---弹出动画所使用协议
+#pragma mark -处理手势驱动
+- (void)handlePanGesture:(UIPanGestureRecognizer *)gesture
+{
+    CGPoint translation = [gesture translationInView:self.modalVC.view];
+    //---向上拖动不处理
+    if(translation.y < 0)
+    {
+        return;
+    }
+    
+    //---根据手势状态操作
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:{
+            self.isInteractive =  YES;
+            [self.modalVC dismissViewControllerAnimated:YES completion:nil];
+            break;
+        }
+        case UIGestureRecognizerStateChanged:{
+            //---滑动距离/屏幕高度 = 进度
+            CGFloat percent = (translation.y/ScreenHeight) <= 1 ? (translation.y/ScreenHeight):1;
+            self.isDragEnough = (percent > 0.2);
+            //---更新
+            [self updateInteractiveTransition:percent];
+            
+            break;
+        }
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateEnded:{
+            //---拖动结束，判断是执行还是取消
+            self.isInteractive = NO;
+            if (gesture.state == UIGestureRecognizerStateCancelled || !self.isDragEnough) {
+                [self cancelInteractiveTransition];
+            }else{
+                [self finishInteractiveTransition];
+            }
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+#pragma mark -覆写手势驱动过程
+//---开始
+- (void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+{
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    //---保存当前缩小的状态
+    self.tempTransform = toVC.view.layer.transform;
+    //---保存transitionContext，下面使用
+    self.transitionContext = transitionContext;
+}
+
+//---更新
+- (void)updateInteractiveTransition:(CGFloat)percentComplete
+{
+    id<UIViewControllerContextTransitioning> transitionContext = self.transitionContext;
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    //---计算放大倍数，然后进行缩放
+    CGFloat scale = 1 + ((1/0.8*0.95) - 1)*percentComplete;
+    toVC.view.layer.transform = CATransform3DScale(self.tempTransform, scale, scale, 1);
+    
+    //---下拉的长度
+    CGRect nowFrame = CGRectMake(0,
+                                 (CGRectGetHeight(fromVC.view.bounds) * percentComplete),
+                                 CGRectGetWidth(fromVC.view.frame),
+                                 CGRectGetHeight(fromVC.view.frame));
+    fromVC.view.frame = nowFrame;
+}
+
+//---完成
+- (void)finishInteractiveTransition
+{
+    id<UIViewControllerContextTransitioning> transitionContext = self.transitionContext;
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    //---收起弹出的试图控制器
+    CGRect finalRect = CGRectMake(0,
+                                  CGRectGetHeight(fromVC.view.bounds) ,
+                                  CGRectGetWidth(fromVC.view.frame),
+                                  CGRectGetHeight(fromVC.view.frame));
+    
+    //---动画
+    [UIView animateWithDuration:[self transitionDuration:transitionContext]
+                          delay:0
+         usingSpringWithDamping:5
+          initialSpringVelocity:5
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         //---放大到原始大小
+                         CATransform3D transition = CATransform3DIdentity;
+                         toVC.view.layer.transform = transition;
+                         //---向下移动隐藏
+                         fromVC.view.frame = finalRect;
+                         
+                     } completion:^(BOOL finished) {
+                         //---标记结束
+                         [transitionContext completeTransition:YES];
+                         self.modalVC = nil;
+                     }];
+}
+
+//---取消
+- (void)cancelInteractiveTransition
+{
+    id<UIViewControllerContextTransitioning> transitionContext = self.transitionContext;
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    [UIView animateWithDuration:0.4
+                          delay:0
+         usingSpringWithDamping:5
+          initialSpringVelocity:5
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         //---缩小到大小
+                         toVC.view.layer.transform = self.tempTransform;
+                         //---向上移动，恢复到弹出的状态
+                         fromVC.view.frame = CGRectMake(0,0,
+                                                        CGRectGetWidth(fromVC.view.frame),
+                                                        CGRectGetHeight(fromVC.view.frame));
+                         
+                     } completion:^(BOOL finished) {
+                         //---标记未结束
+                         [transitionContext completeTransition:NO];
+                     }];
+}
+
+#pragma mark -设置是否自定义转场动画
+//---弹出
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source
 {
     self.isDismiss = NO;
     return self;
 }
 
-//---收起动画所用协议
+//---收起
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed
 {
     self.isDismiss = YES;
     return self;
+}
+
+#pragma mark -设置是否自定义手势驱动转场动画
+//---弹出
+- (id <UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id <UIViewControllerAnimatedTransitioning>)animator
+{
+    return nil;
+}
+
+//---收起
+- (id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator
+{
+    if (self.isInteractive && self.dragable) {
+        self.isDismiss = YES;
+        return self;
+    }
+    return nil;
 }
 
 #pragma mark - 变换操作
