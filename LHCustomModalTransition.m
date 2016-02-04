@@ -57,6 +57,13 @@
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gesture
 {
     CGPoint translation = [gesture translationInView:self.modalVC.view];
+    //---向上拖动不处理
+    if(translation.y < 0)
+    {
+        return;
+    }
+    
+    //---根据手势状态操作
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan:{
             self.isInteractive =  YES;
@@ -67,6 +74,7 @@
             //---滑动距离/屏幕高度 = 进度
             CGFloat percent = (translation.y/ScreenHeight) <= 1 ? (translation.y/ScreenHeight):1;
             self.isDragEnough = (percent > 0.2);
+            //---更新
             [self updateInteractiveTransition:percent];
             
             break;
