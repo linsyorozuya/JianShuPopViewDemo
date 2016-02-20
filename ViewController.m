@@ -11,19 +11,8 @@
 #import "LHCustomModalTransition.h"
 
 @interface ViewController ()
-
-/*!
- *  遮罩层
- */
-@property (nonatomic, strong) UIView *mask_View;
-
-/*!
- *  弹出View
- */
-@property (nonatomic, strong) UIView *pop_View;
-
+//---全局持有，强应用
 @property (nonatomic, strong) LHCustomModalTransition *transition;
-
 
 @end
 

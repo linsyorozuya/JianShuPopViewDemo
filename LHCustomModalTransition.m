@@ -210,7 +210,7 @@
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     //---计算放大倍数，然后进行缩放
-    CGFloat scale = 1 + ((1/0.8*0.95) - 1)*percentComplete;
+    CGFloat scale = 1 + ((1/0.8) - 1)*percentComplete;
     toVC.view.layer.transform = CATransform3DScale(self.tempTransform, scale, scale, 1);
     
     //---下拉的长度
