@@ -20,10 +20,13 @@ typedef NS_ENUM(NSUInteger, LHCustomModalTransitionStyle) {
 @property (nonatomic, assign, getter=isDragable) BOOL dragable;
 //---设置动画样式
 @property (nonatomic, assign) LHCustomModalTransitionStyle transitionStyle;
-//---设置缩放的比例
-@property (nonatomic, assign) CGFloat reduceScale;
 //---设置动画时间
 @property (nonatomic, assign) CGFloat duration;
+
+//---设置缩放的比例
+@property (nonatomic, assign) CGFloat behindViewScale;
+//---设置缩放VC透明度
+@property (nonatomic, assign) CGFloat behindViewAlpha;
 
 //---初始化 model视图控制器
 - (id)initWithModalViewController:(UIViewController *)modalViewController;

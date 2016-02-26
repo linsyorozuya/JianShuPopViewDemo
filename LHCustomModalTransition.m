@@ -41,8 +41,9 @@
         //---设置默认样式、并且默认不能手势返回、缩放默认比例0.85、默认动画时间0.8s
         _transitionStyle = LHCustomScaleAndRotateTransitionStyle;
         _dragable = NO;
-        _reduceScale = 0.85f;
-        _duration = 0.6;
+        _duration = 0.6f;
+        _behindViewScale = 0.85f;
+        _behindViewAlpha = 0.8f;
     }
     return self;
 }
@@ -68,7 +69,7 @@
 //---设置缩放比例
 - (void)setReduceScale:(CGFloat)reduceScale
 {
-    _reduceScale = reduceScale;
+    _behindViewScale = reduceScale;
 }
 
 //---设置转场时长
@@ -121,7 +122,10 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
             //---形变：缩小
-            fromVC.view.transform = CGAffineTransformScale(fromVC.view.transform, _reduceScale, _reduceScale);
+            fromVC.view.transform = CGAffineTransformScale(fromVC.view.transform, _behindViewScale, _behindViewScale);
+            //---透明度变化
+            fromVC.view.alpha = _behindViewAlpha;
+            
             //---弹出视图控制器
             toVC.view.frame = finalRect;
             
@@ -133,16 +137,21 @@
     }
     else //---收起
     {
-        
+
         //---获得当前frame
         CGRect initRect = [transitionContext initialFrameForViewController:fromVC];
         CGRect finalRect = CGRectOffset(initRect, 0, ScreenHeight);
         
+        //---透明度变化
+        toVC.view.alpha = _behindViewAlpha;
         //---收起动画
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
             //---形变：回到初始位置
             toVC.view.transform =CGAffineTransformIdentity;
+            //---透明度变化
+            toVC.view.alpha = 1.0f;
+            
             //---收起视图控制器
             fromVC.view.frame = finalRect;
             
@@ -196,7 +205,9 @@
             
             //---弹出视图控制器
             toVC.view.frame = finalRect;
-            
+            //---透明度变化
+            fromVC.view.alpha = _behindViewAlpha;
+
         } completion:^(BOOL finished) {
             //---标记结束
             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
@@ -226,11 +237,15 @@
             
         }];
         
+        //---透明度变化
+        toVC.view.alpha = _behindViewAlpha;
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             
             //---收起视图控制器
             fromVC.view.frame = finalRect;
-            
+            //---透明度变化
+            toVC.view.alpha = 1.0f;
+
         } completion:^(BOOL finished) {
             //---标记结束
             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
@@ -303,6 +318,9 @@
     //---计算放大倍数，然后进行缩放
     CGFloat scale = 1 + ((1/0.8) - 1)*percentComplete;
     toVC.view.layer.transform = CATransform3DScale(self.tempTransform, scale, scale, 1);
+    
+    //---更新新透明度
+    toVC.view.alpha = _behindViewAlpha + ((1 - _behindViewAlpha) * percentComplete);
     
     //---下拉的长度
     CGRect nowFrame = CGRectMake(0,
@@ -411,9 +429,9 @@
     CATransform3D transform = CATransform3DIdentity;
     transform.m34 = 1.0/ -900;
     
-    _reduceScale = _reduceScale + 0.1 > 1.0 ? 1.0 :_reduceScale;
+    _behindViewScale = _behindViewScale + 0.1 > 1.0 ? 1.0 :_behindViewScale;
     //---宽高缩小0.9
-    transform = CATransform3DScale(transform, _reduceScale+0.1, _reduceScale+0.1, 1);
+    transform = CATransform3DScale(transform, _behindViewScale+0.1, _behindViewScale+0.1, 1);
     //---绕X轴旋转15度
     transform = CATransform3DRotate(transform, 15.0 * M_PI / 180.0 , 1, 0, 0);
     
@@ -428,7 +446,7 @@
     //---向上移动的高度
     transform = CATransform3DTranslate(transform, 0, -20 , 0);
     //---宽高缩小0.8
-    transform = CATransform3DScale(transform, _reduceScale, _reduceScale, 1);
+    transform = CATransform3DScale(transform, _behindViewScale, _behindViewScale, 1);
     
     return transform;
 }
