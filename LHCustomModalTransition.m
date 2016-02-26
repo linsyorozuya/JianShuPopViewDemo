@@ -41,8 +41,8 @@
         //---设置默认样式、并且默认不能手势返回、缩放默认比例0.85、默认动画时间0.8s
         _transitionStyle = LHCustomScaleAndRotateTransitionStyle;
         _dragable = NO;
-        _reduceScale = 0.85;
-        _duration = 0.8;
+        _reduceScale = 0.85f;
+        _duration = 0.6;
     }
     return self;
 }
@@ -118,16 +118,10 @@
         [containerView addSubview:toVC.view];
         
         //---弹出动画
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             
-            //---形变：向上移动，并缩小
-            [fromVC.view.layer setTransform:[self secondTransform]];
-            
-        } completion:^(BOOL finished) {
-        }];
-        
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            
+            //---形变：缩小
+            fromVC.view.transform = CGAffineTransformScale(fromVC.view.transform, _reduceScale, _reduceScale);
             //---弹出视图控制器
             toVC.view.frame = finalRect;
             
@@ -145,19 +139,14 @@
         CGRect finalRect = CGRectOffset(initRect, 0, ScreenHeight);
         
         //---收起动画
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            
             //---形变：回到初始位置
-            [toVC.view.layer setTransform:CATransform3DIdentity];
-            
-        } completion:^(BOOL finished) {
-        }];
-        
-        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            
+            toVC.view.transform =CGAffineTransformIdentity;
             //---收起视图控制器
             fromVC.view.frame = finalRect;
             
-        } completion:^(BOOL finished) {
+        }completion:^(BOOL finished) {
             //---标记结束
             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
         }];
