@@ -20,14 +20,13 @@
     self.transition = [[LHCustomModalTransition alloc]initWithModalViewController:modalVC];
 
     //-----------------可选的以下设置
-    //---是否可下拉收起
-    self.transition.dragable = YES;
-    //---设置缩放样式
-    self.transition.transitionStyle = LHCustomScaleTransitionStyle;
-    //---设置缩放比例
-    self.transition.reduceScale = 0.5;
-    //---设置缩放时间
-    self.transition.duration = 2;
+    
+    self.transition.dragable = YES;//---是否可下拉收起
+    self.transition.transitionStyle = LHCustomScaleTransitionStyle;//---设置缩放样式
+    self.transition.behindViewAlpha = 0.5f;//---设置缩放比例
+    self.transition.duration = 2.0f;//---设置缩放时间
+    self.transition.behindViewAlpha = 0.5f;//---设置要隐藏的VC透明度
+    
     //--------------------------------
      
     //---设置代理为自定义的转场
