@@ -38,9 +38,11 @@
     if (self) {
         
         _modalVC = modalViewController;
-        //---设置默认样式、并且默认不能手势返回
+        //---设置默认样式、并且默认不能手势返回、缩放默认比例0.85、默认动画时间0.8s
         _transitionStyle = LHCustomScaleAndRotateTransitionStyle;
         _dragable = NO;
+        _reduceScale = 0.85;
+        _duration = 0.8;
     }
     return self;
 }
@@ -63,11 +65,23 @@
     _transitionStyle = transitionStyle;
 }
 
+//---设置缩放比例
+- (void)setReduceScale:(CGFloat)reduceScale
+{
+    _reduceScale = reduceScale;
+}
+
+//---设置转场时长
+- (void)setDuration:(CGFloat)duration
+{
+    _duration = duration;
+}
+
 #pragma mark -转场委托实现
 //---转场动画时间
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.8;
+    return _duration;
 }
 
 //---转场动画具体实现
@@ -407,8 +421,10 @@
 {
     CATransform3D transform = CATransform3DIdentity;
     transform.m34 = 1.0/ -900;
+    
+    _reduceScale = _reduceScale + 0.1 > 1.0 ? 1.0 :_reduceScale;
     //---宽高缩小0.9
-    transform = CATransform3DScale(transform, 0.95, 0.95, 1);
+    transform = CATransform3DScale(transform, _reduceScale+0.1, _reduceScale+0.1, 1);
     //---绕X轴旋转15度
     transform = CATransform3DRotate(transform, 15.0 * M_PI / 180.0 , 1, 0, 0);
     
@@ -423,7 +439,7 @@
     //---向上移动的高度
     transform = CATransform3DTranslate(transform, 0, -20 , 0);
     //---宽高缩小0.8
-    transform = CATransform3DScale(transform, 0.85, 0.85, 1);
+    transform = CATransform3DScale(transform, _reduceScale, _reduceScale, 1);
     
     return transform;
 }

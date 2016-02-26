@@ -34,8 +34,12 @@
     ModalViewController *modalVC = [ModalViewController new];
     //---必须强引用，否则会被释放，自定义dismiss的转场无效
     self.transition = [[LHCustomModalTransition alloc]initWithModalViewController:modalVC];
+    
     self.transition.dragable = YES;//---是否可下拉收起
 //    self.transition.transitionStyle = LHCustomScaleTransitionStyle;//---设置缩放样式
+//    self.transition.reduceScale = 0.5;//---设置缩放比例
+//    self.transition.duration = 2;//---设置缩放时间
+    
     modalVC.transitioningDelegate = self.transition;
     //---必须添加这句.自定义转场动画
     modalVC.modalPresentationStyle = UIModalPresentationCustom;
