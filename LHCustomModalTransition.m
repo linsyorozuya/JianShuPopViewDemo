@@ -32,11 +32,14 @@
 
 @implementation LHCustomModalTransition
 
-- (instancetype)initWithModalViewController:(UIViewController *)modalViewController
+- (instancetype)initWithModalViewController:(UIViewController *)modalViewController 
 {
     self = [super init];
     if (self) {
+        
         _modalVC = modalViewController;
+        //---设置默认样式、并且默认不能手势返回
+        _transitionStyle = LHCustomScaleAndRotateTransitionStyle;
         _dragable = NO;
     }
     return self;
@@ -54,6 +57,12 @@
     }
 }
 
+//---设置动画样式
+- (void)setTransitionStyle:(LHCustomModalTransitionStyle)transitionStyle
+{
+    _transitionStyle = transitionStyle;
+}
+
 #pragma mark -转场委托实现
 //---转场动画时间
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -64,13 +73,93 @@
 //---转场动画具体实现
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
+    switch (_transitionStyle) {
+        case LHCustomScaleAndRotateTransitionStyle:
+            [self animateLHCustomScaleAndRotateTransitionStyleTransition:transitionContext];
+            break;
+        case LHCustomScaleTransitionStyle:
+            [self animateLHCustomScaleTransitionStyleTransition:transitionContext];
+            break;
+        default:
+            break;
+    }
+}
+
+#pragma mark - 不同动画效果
+//---LHCustomScaleTransitionStyle
+- (void)animateLHCustomScaleTransitionStyleTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+{
     //---获取转场的两个视图控制器
     UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     //---获取产生转场的容器view
     UIView *containerView = [transitionContext containerView];
+    
+    if (!self.isDismiss)//---弹出
+    {
+        //---初始化弹出视图在底部
+        CGRect finalRect = [transitionContext finalFrameForViewController:toVC];
+        toVC.view.frame = CGRectOffset(finalRect, 0, ScreenHeight);
+        [containerView addSubview:toVC.view];
+        
+        //---弹出动画
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            //---形变：向上移动，并缩小
+            [fromVC.view.layer setTransform:[self secondTransform]];
+            
+        } completion:^(BOOL finished) {
+        }];
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            //---弹出视图控制器
+            toVC.view.frame = finalRect;
+            
+        } completion:^(BOOL finished) {
+            //---标记结束
+            [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+        }];
+        
+    }
+    else //---收起
+    {
+        
+        //---获得当前frame
+        CGRect initRect = [transitionContext initialFrameForViewController:fromVC];
+        CGRect finalRect = CGRectOffset(initRect, 0, ScreenHeight);
+        
+        //---收起动画
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            //---形变：回到初始位置
+            [toVC.view.layer setTransform:CATransform3DIdentity];
+            
+        } completion:^(BOOL finished) {
+        }];
+        
+        [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
+            //---收起视图控制器
+            fromVC.view.frame = finalRect;
+            
+        } completion:^(BOOL finished) {
+            //---标记结束
+            [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+        }];
+    }
+}
 
+//---LHCustomScaleAndRotateTransitionStyle
+- (void)animateLHCustomScaleAndRotateTransitionStyleTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+{
+    //---获取转场的两个视图控制器
+    UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    //---获取产生转场的容器view
+    UIView *containerView = [transitionContext containerView];
+    
     if (!self.isDismiss)//---弹出
     {
         //---解决角度变换时，fromVC有一半会出现在 toVC上的bug
@@ -87,11 +176,11 @@
             
             //---第一步形变：绕X轴旋转并缩小
             [fromVC.view.layer setTransform:[self firstTransform]];
-
+            
         } completion:^(BOOL finished) {
             
             [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-
+                
                 //---第二步形变：向上移动，并缩小
                 [fromVC.view.layer setTransform:[self secondTransform]];
                 
@@ -122,13 +211,13 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             //---第一步形变：绕X轴旋转并缩小
             [toVC.view.layer setTransform:[self firstTransform]];
-          
+            
         } completion:^(BOOL finished) {
             
             [UIView animateWithDuration:[self transitionDuration:transitionContext]/2.0 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 //---第二步形变：回到初始位置
                 [toVC.view.layer setTransform:CATransform3DIdentity];
-   
+                
             } completion:^(BOOL finished) {
             }];
             
@@ -143,7 +232,6 @@
             //---标记结束
             [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
         }];
-        
     }
 }
 
@@ -335,7 +423,7 @@
     //---向上移动的高度
     transform = CATransform3DTranslate(transform, 0, -20 , 0);
     //---宽高缩小0.8
-    transform = CATransform3DScale(transform, 0.8, 0.8, 1);
+    transform = CATransform3DScale(transform, 0.85, 0.85, 1);
     
     return transform;
 }
