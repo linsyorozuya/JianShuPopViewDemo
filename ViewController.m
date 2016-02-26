@@ -37,7 +37,7 @@
     
     self.transition.dragable = YES;//---是否可下拉收起
 //    self.transition.transitionStyle = LHCustomScaleTransitionStyle;//---设置缩放样式
-//    self.transition.reduceScale = 0.5;//---设置缩放比例
+//    self.transition.reduceScale = 0.5f;//---设置缩放比例
 //    self.transition.duration = 2;//---设置缩放时间
     
     modalVC.transitioningDelegate = self.transition;
