@@ -316,7 +316,7 @@
     UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     //---计算放大倍数，然后进行缩放
-    CGFloat scale = 1 + ((1/0.8) - 1)*percentComplete;
+    CGFloat scale = 1 + ((1.0 / _behindViewScale) - 1)*percentComplete;
     toVC.view.layer.transform = CATransform3DScale(self.tempTransform, scale, scale, 1);
     
     //---更新新透明度
@@ -354,6 +354,9 @@
                          //---放大到原始大小
                          CATransform3D transition = CATransform3DIdentity;
                          toVC.view.layer.transform = transition;
+                         //---透明度变化
+                         toVC.view.alpha = 1.0f;
+                         
                          //---向下移动隐藏
                          fromVC.view.frame = finalRect;
                          
@@ -379,6 +382,9 @@
                      animations:^{
                          //---缩小到大小
                          toVC.view.layer.transform = self.tempTransform;
+                         //---透明度变化
+                         toVC.view.alpha = _behindViewAlpha;
+                         
                          //---向上移动，恢复到弹出的状态
                          fromVC.view.frame = CGRectMake(0,0,
                                                         CGRectGetWidth(fromVC.view.frame),
@@ -445,7 +451,7 @@
     transform.m34 = [self firstTransform].m34;
     //---向上移动的高度
     transform = CATransform3DTranslate(transform, 0, -20 , 0);
-    //---宽高缩小0.8
+    //---宽高缩小
     transform = CATransform3DScale(transform, _behindViewScale, _behindViewScale, 1);
     
     return transform;
