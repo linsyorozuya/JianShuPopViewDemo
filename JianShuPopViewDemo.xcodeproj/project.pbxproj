@@ -1,0 +1,545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EC16A9661C5F42CD003D272E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC16A9651C5F42CD003D272E /* main.m */; };
+		EC16A9691C5F42CD003D272E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC16A9681C5F42CD003D272E /* AppDelegate.m */; };
+		EC16A96C1C5F42CD003D272E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC16A96B1C5F42CD003D272E /* ViewController.m */; };
+		EC16A96F1C5F42CD003D272E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC16A96D1C5F42CD003D272E /* Main.storyboard */; };
+		EC16A9711C5F42CD003D272E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC16A9701C5F42CD003D272E /* Assets.xcassets */; };
+		EC16A9741C5F42CD003D272E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC16A9721C5F42CD003D272E /* LaunchScreen.storyboard */; };
+		EC16A97F1C5F42CD003D272E /* JianShuPopViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC16A97E1C5F42CD003D272E /* JianShuPopViewDemoTests.m */; };
+		EC16A98A1C5F42CD003D272E /* JianShuPopViewDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC16A9891C5F42CD003D272E /* JianShuPopViewDemoUITests.m */; };
+		EC16A99E1C60463D003D272E /* LHCustomModalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = EC16A99D1C60463D003D272E /* LHCustomModalTransition.m */; };
+		EC16A9A11C607E2F003D272E /* ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC16A9A01C607E2F003D272E /* ModalViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EC16A97B1C5F42CD003D272E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC16A9591C5F42CD003D272E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC16A9601C5F42CD003D272E;
+			remoteInfo = JianShuPopViewDemo;
+		};
+		EC16A9861C5F42CD003D272E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EC16A9591C5F42CD003D272E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC16A9601C5F42CD003D272E;
+			remoteInfo = JianShuPopViewDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EC16A9611C5F42CD003D272E /* JianShuPopViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JianShuPopViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC16A9651C5F42CD003D272E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EC16A9671C5F42CD003D272E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		EC16A9681C5F42CD003D272E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EC16A96A1C5F42CD003D272E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		EC16A96B1C5F42CD003D272E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EC16A96E1C5F42CD003D272E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC16A9701C5F42CD003D272E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EC16A9731C5F42CD003D272E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EC16A9751C5F42CD003D272E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC16A97A1C5F42CD003D272E /* JianShuPopViewDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JianShuPopViewDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC16A97E1C5F42CD003D272E /* JianShuPopViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JianShuPopViewDemoTests.m; sourceTree = "<group>"; };
+		EC16A9801C5F42CD003D272E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC16A9851C5F42CD003D272E /* JianShuPopViewDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JianShuPopViewDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC16A9891C5F42CD003D272E /* JianShuPopViewDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JianShuPopViewDemoUITests.m; sourceTree = "<group>"; };
+		EC16A98B1C5F42CD003D272E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC16A99C1C60463D003D272E /* LHCustomModalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHCustomModalTransition.h; sourceTree = "<group>"; };
+		EC16A99D1C60463D003D272E /* LHCustomModalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHCustomModalTransition.m; sourceTree = "<group>"; };
+		EC16A99F1C607E2F003D272E /* ModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalViewController.h; sourceTree = "<group>"; };
+		EC16A9A01C607E2F003D272E /* ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EC16A95E1C5F42CD003D272E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC16A9771C5F42CD003D272E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC16A9821C5F42CD003D272E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EC16A9581C5F42CD003D272E = {
+			isa = PBXGroup;
+			children = (
+				EC16A9631C5F42CD003D272E /* JianShuPopViewDemo */,
+				EC16A97D1C5F42CD003D272E /* JianShuPopViewDemoTests */,
+				EC16A9881C5F42CD003D272E /* JianShuPopViewDemoUITests */,
+				EC16A9621C5F42CD003D272E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EC16A9621C5F42CD003D272E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC16A9611C5F42CD003D272E /* JianShuPopViewDemo.app */,
+				EC16A97A1C5F42CD003D272E /* JianShuPopViewDemoTests.xctest */,
+				EC16A9851C5F42CD003D272E /* JianShuPopViewDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EC16A9631C5F42CD003D272E /* JianShuPopViewDemo */ = {
+			isa = PBXGroup;
+			children = (
+				EC16A99B1C6045B3003D272E /* LHDragableModalTransition */,
+				EC16A9671C5F42CD003D272E /* AppDelegate.h */,
+				EC16A9681C5F42CD003D272E /* AppDelegate.m */,
+				EC16A96A1C5F42CD003D272E /* ViewController.h */,
+				EC16A96B1C5F42CD003D272E /* ViewController.m */,
+				EC16A99F1C607E2F003D272E /* ModalViewController.h */,
+				EC16A9A01C607E2F003D272E /* ModalViewController.m */,
+				EC16A96D1C5F42CD003D272E /* Main.storyboard */,
+				EC16A9701C5F42CD003D272E /* Assets.xcassets */,
+				EC16A9721C5F42CD003D272E /* LaunchScreen.storyboard */,
+				EC16A9751C5F42CD003D272E /* Info.plist */,
+				EC16A9641C5F42CD003D272E /* Supporting Files */,
+			);
+			path = JianShuPopViewDemo;
+			sourceTree = "<group>";
+		};
+		EC16A9641C5F42CD003D272E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC16A9651C5F42CD003D272E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC16A97D1C5F42CD003D272E /* JianShuPopViewDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC16A97E1C5F42CD003D272E /* JianShuPopViewDemoTests.m */,
+				EC16A9801C5F42CD003D272E /* Info.plist */,
+			);
+			path = JianShuPopViewDemoTests;
+			sourceTree = "<group>";
+		};
+		EC16A9881C5F42CD003D272E /* JianShuPopViewDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EC16A9891C5F42CD003D272E /* JianShuPopViewDemoUITests.m */,
+				EC16A98B1C5F42CD003D272E /* Info.plist */,
+			);
+			path = JianShuPopViewDemoUITests;
+			sourceTree = "<group>";
+		};
+		EC16A99B1C6045B3003D272E /* LHDragableModalTransition */ = {
+			isa = PBXGroup;
+			children = (
+				EC16A99C1C60463D003D272E /* LHCustomModalTransition.h */,
+				EC16A99D1C60463D003D272E /* LHCustomModalTransition.m */,
+			);
+			name = LHDragableModalTransition;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EC16A9601C5F42CD003D272E /* JianShuPopViewDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC16A98E1C5F42CD003D272E /* Build configuration list for PBXNativeTarget "JianShuPopViewDemo" */;
+			buildPhases = (
+				EC16A95D1C5F42CD003D272E /* Sources */,
+				EC16A95E1C5F42CD003D272E /* Frameworks */,
+				EC16A95F1C5F42CD003D272E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JianShuPopViewDemo;
+			productName = JianShuPopViewDemo;
+			productReference = EC16A9611C5F42CD003D272E /* JianShuPopViewDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EC16A9791C5F42CD003D272E /* JianShuPopViewDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC16A9911C5F42CD003D272E /* Build configuration list for PBXNativeTarget "JianShuPopViewDemoTests" */;
+			buildPhases = (
+				EC16A9761C5F42CD003D272E /* Sources */,
+				EC16A9771C5F42CD003D272E /* Frameworks */,
+				EC16A9781C5F42CD003D272E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC16A97C1C5F42CD003D272E /* PBXTargetDependency */,
+			);
+			name = JianShuPopViewDemoTests;
+			productName = JianShuPopViewDemoTests;
+			productReference = EC16A97A1C5F42CD003D272E /* JianShuPopViewDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EC16A9841C5F42CD003D272E /* JianShuPopViewDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC16A9941C5F42CD003D272E /* Build configuration list for PBXNativeTarget "JianShuPopViewDemoUITests" */;
+			buildPhases = (
+				EC16A9811C5F42CD003D272E /* Sources */,
+				EC16A9821C5F42CD003D272E /* Frameworks */,
+				EC16A9831C5F42CD003D272E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC16A9871C5F42CD003D272E /* PBXTargetDependency */,
+			);
+			name = JianShuPopViewDemoUITests;
+			productName = JianShuPopViewDemoUITests;
+			productReference = EC16A9851C5F42CD003D272E /* JianShuPopViewDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EC16A9591C5F42CD003D272E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Lin;
+				TargetAttributes = {
+					EC16A9601C5F42CD003D272E = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 5TCKKM3Y4X;
+					};
+					EC16A9791C5F42CD003D272E = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = EC16A9601C5F42CD003D272E;
+					};
+					EC16A9841C5F42CD003D272E = {
+						CreatedOnToolsVersion = 7.2;
+						TestTargetID = EC16A9601C5F42CD003D272E;
+					};
+				};
+			};
+			buildConfigurationList = EC16A95C1C5F42CD003D272E /* Build configuration list for PBXProject "JianShuPopViewDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EC16A9581C5F42CD003D272E;
+			productRefGroup = EC16A9621C5F42CD003D272E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EC16A9601C5F42CD003D272E /* JianShuPopViewDemo */,
+				EC16A9791C5F42CD003D272E /* JianShuPopViewDemoTests */,
+				EC16A9841C5F42CD003D272E /* JianShuPopViewDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EC16A95F1C5F42CD003D272E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC16A9741C5F42CD003D272E /* LaunchScreen.storyboard in Resources */,
+				EC16A9711C5F42CD003D272E /* Assets.xcassets in Resources */,
+				EC16A96F1C5F42CD003D272E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC16A9781C5F42CD003D272E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC16A9831C5F42CD003D272E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EC16A95D1C5F42CD003D272E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC16A99E1C60463D003D272E /* LHCustomModalTransition.m in Sources */,
+				EC16A96C1C5F42CD003D272E /* ViewController.m in Sources */,
+				EC16A9A11C607E2F003D272E /* ModalViewController.m in Sources */,
+				EC16A9691C5F42CD003D272E /* AppDelegate.m in Sources */,
+				EC16A9661C5F42CD003D272E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC16A9761C5F42CD003D272E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC16A97F1C5F42CD003D272E /* JianShuPopViewDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC16A9811C5F42CD003D272E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC16A98A1C5F42CD003D272E /* JianShuPopViewDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC16A97C1C5F42CD003D272E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC16A9601C5F42CD003D272E /* JianShuPopViewDemo */;
+			targetProxy = EC16A97B1C5F42CD003D272E /* PBXContainerItemProxy */;
+		};
+		EC16A9871C5F42CD003D272E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC16A9601C5F42CD003D272E /* JianShuPopViewDemo */;
+			targetProxy = EC16A9861C5F42CD003D272E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EC16A96D1C5F42CD003D272E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC16A96E1C5F42CD003D272E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EC16A9721C5F42CD003D272E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC16A9731C5F42CD003D272E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EC16A98C1C5F42CD003D272E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EC16A98D1C5F42CD003D272E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EC16A98F1C5F42CD003D272E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = JianShuPopViewDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Lin.JianShuPopViewDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EC16A9901C5F42CD003D272E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = JianShuPopViewDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Lin.JianShuPopViewDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		EC16A9921C5F42CD003D272E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JianShuPopViewDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Lin.JianShuPopViewDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JianShuPopViewDemo.app/JianShuPopViewDemo";
+			};
+			name = Debug;
+		};
+		EC16A9931C5F42CD003D272E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = JianShuPopViewDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Lin.JianShuPopViewDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JianShuPopViewDemo.app/JianShuPopViewDemo";
+			};
+			name = Release;
+		};
+		EC16A9951C5F42CD003D272E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = JianShuPopViewDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Lin.JianShuPopViewDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = JianShuPopViewDemo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		EC16A9961C5F42CD003D272E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = JianShuPopViewDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Lin.JianShuPopViewDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = JianShuPopViewDemo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EC16A95C1C5F42CD003D272E /* Build configuration list for PBXProject "JianShuPopViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC16A98C1C5F42CD003D272E /* Debug */,
+				EC16A98D1C5F42CD003D272E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC16A98E1C5F42CD003D272E /* Build configuration list for PBXNativeTarget "JianShuPopViewDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC16A98F1C5F42CD003D272E /* Debug */,
+				EC16A9901C5F42CD003D272E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC16A9911C5F42CD003D272E /* Build configuration list for PBXNativeTarget "JianShuPopViewDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC16A9921C5F42CD003D272E /* Debug */,
+				EC16A9931C5F42CD003D272E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC16A9941C5F42CD003D272E /* Build configuration list for PBXNativeTarget "JianShuPopViewDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC16A9951C5F42CD003D272E /* Debug */,
+				EC16A9961C5F42CD003D272E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EC16A9591C5F42CD003D272E /* Project object */;
+}
