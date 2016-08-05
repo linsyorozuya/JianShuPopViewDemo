@@ -9,6 +9,9 @@
 #import "LHCustomModalTransition.h"
 
 #define ScreenHeight [[UIScreen mainScreen]bounds].size.height
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define iOS8_OR_LATER SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")
+
 
 @interface LHCustomModalTransition()
 
@@ -114,7 +117,16 @@
     if (!self.isDismiss)//---弹出
     {
         //---初始化弹出视图在底部
-        CGRect finalRect = [transitionContext finalFrameForViewController:toVC];
+        // ios7 finalFrameForViewController:可能取不到 autolayout 的 frame
+        CGRect finalRect = CGRectZero;
+        if(iOS8_OR_LATER)
+        {
+            finalRect = [transitionContext finalFrameForViewController:toVC];
+        }else
+        {
+            finalRect = [[UIScreen mainScreen] bounds];
+        }
+        
         toVC.view.frame = CGRectOffset(finalRect, 0, ScreenHeight);
         [containerView addSubview:toVC.view];
         
@@ -179,7 +191,15 @@
         toVC.view.layer.zPosition = 400;
         
         //---初始化弹出视图在底部
-        CGRect finalRect = [transitionContext finalFrameForViewController:toVC];
+        // ios7 finalFrameForViewController:可能取不到 autolayout 的 frame
+        CGRect finalRect = CGRectZero;
+        if(iOS8_OR_LATER)
+        {
+            finalRect = [transitionContext finalFrameForViewController:toVC];
+        }else
+        {
+            finalRect = [[UIScreen mainScreen] bounds];
+        }
         toVC.view.frame = CGRectOffset(finalRect, 0, ScreenHeight);
         [containerView addSubview:toVC.view];
         
