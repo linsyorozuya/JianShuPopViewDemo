@@ -1,11 +1,11 @@
 # JianShuPopViewDemo
 尝试封装简书、淘宝弹出效果动画
 
-封装思路见：[简书、淘宝弹出效果动画demo](http://linsyorozuya.com/catransform3d-shi-xian-jian-shu-appdan-chu-shi-tu-xiao-guo/)
+详情见：[简书、淘宝弹出效果动画demo](http://linsyorozuya.com/catransform3d-shi-xian-jian-shu-appdan-chu-shi-tu-xiao-guo/)
 
 ![](https://github.com/LinBling/JianShuPopViewDemo/blob/master/2016-02-03%2016_20_30.gif)
 
-###使用方法
+### 使用方法
 
     @property (nonatomic, strong) LHCustomModalTransition *transition;
     
